@@ -36,7 +36,7 @@ int is_full(ArrayListType *L) {
 void display(ArrayListType *L) {
     int i;
     for(i=0;i<L->length;i++)
-        printf("%d", L->list[i]);
+        printf("%d\n", L->list[i]);
 }
 // position: location to add
 // item: item to add
@@ -57,7 +57,7 @@ element delete(ArrayListType *L, int position) {
 
     if( position < 0 || position >= L->length )
         error("Location Error");
-    item = L->[position];
+    item = L->list[position];
     for(i=position; i<(L->length-1);i++)
         L->list[i] = L->list[i+1];
     L->length--;
@@ -70,14 +70,15 @@ main() {
 
     // Create a ArrayListType stucture with static allocation
     // and returning pointer by parameter to function
-    int(&list1);
-    add(&list, 0, 10);
-    add(&list, 0, 20);
-    add(&list, 0, 30);
+    init(&list1);
+    add(&list1, 0, 10);
+    add(&list1, 0, 20);
+    add(&list1, 0, 30);
+    display(&list1);
 
     // Create a ArrayListType stucture with dynamic allocation
     // and returning pointer by parameter to function
-    plist = (ArrayListType *L)malloc(sizeof(ArrayListType));
+    plist = (ArrayListType *)malloc(sizeof(ArrayListType));
     init(plist);
     add(plist, 0, 10);
     add(plist, 0, 20);
